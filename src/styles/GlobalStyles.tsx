@@ -17,14 +17,31 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 300;
   }
 
-  section, .content {
+  .content {
     max-width: 1200px;
     margin: auto;
+    padding: 0.6rem;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    section, .content {
-      padding: 0.6rem;
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  section {
+    p {
+      text-align: justify;
+      line-height: 1.25rem; 
+    }
+
+    h2 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    .content {
+      padding: 0rem;
     }
   }
 `;
