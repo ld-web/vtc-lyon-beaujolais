@@ -42,7 +42,7 @@ const FooterMenu = styled.ul`
   }
 `;
 
-const FooterInfos = styled.p`
+const FooterInfos = styled.div`
   text-align: right;
 `;
 
