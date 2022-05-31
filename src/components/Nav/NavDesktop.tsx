@@ -7,16 +7,23 @@ const LinksNav = styled.nav`
   ul {
     list-style-type: none;
     display: flex;
-    gap: 0.6rem;
-    margin-bottom: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+    }
+
+    li:not(:last-child) {
+      border-right: 1px solid ${({ theme }) => theme.colors.main};
+    }
 
     li a {
-      text-transform: uppercase;
+      display: block;
       text-decoration: none;
       color: ${({ theme }) => theme.colors.main};
       padding: 0.3rem 0.6rem;
       transition: all 200ms;
-      font-weight: 400;
+      font-weight: 300;
 
       &.active,
       &:hover {
