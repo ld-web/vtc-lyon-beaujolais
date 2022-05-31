@@ -2,7 +2,11 @@ import "styled-components";
 
 interface IPalette {
   main: string;
+  secondary: string;
+  darkblue: string;
   bg: string;
+  footerBg: string;
+  headerBg: string;
 }
 
 interface ISizes {
