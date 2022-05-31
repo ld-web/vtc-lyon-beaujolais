@@ -2,6 +2,7 @@ import React, { ReactChild, ReactChildren } from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../styles/GlobalStyles";
 import { defaultTheme } from "../styles/theme";
+import Footer from "./Footer";
 import Header from "./Header";
 
 interface LayoutProps {
@@ -15,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
       <div id="wrapper">
         <GlobalStyles />
         <main>{children}</main>
-        <footer></footer>
+        <Footer />
       </div>
     </ThemeProvider>
   );
