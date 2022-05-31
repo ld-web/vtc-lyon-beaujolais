@@ -11,7 +11,7 @@ const Container = styled.header`
   top: 0px;
   z-index: 30;
   padding: 0.5rem 2rem;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.headerBg};
   display: flex;
   justify-content: space-between;
   align-items: center;
