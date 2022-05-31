@@ -18,7 +18,7 @@ const LinksNav = styled.nav<LinksProps>`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.82);
   transform: ${({ isOpen }) => (isOpen ? "translate(0)" : "translate(100%)")};
   transition: transform 300ms;
   z-index: 999;
