@@ -10,7 +10,7 @@ const Container = styled.header`
   position: sticky;
   top: 0px;
   z-index: 30;
-  padding: 0.5rem 2rem;
+  padding: 0rem 2rem;
   background-color: ${({ theme }) => theme.colors.headerBg};
   display: flex;
   justify-content: space-between;
@@ -23,13 +23,13 @@ const Container = styled.header`
 `;
 
 export default function Header() {
-  const logo_dimension = 80;
+  const logo_dimension = 110;
 
   return (
     <Container>
       <Link to="/">
         <StaticImage
-          src="../images/logo_fond_clair.jpg"
+          src="../images/logo_transparent.jpg"
           alt="Title"
           placeholder="blurred"
           width={logo_dimension}
