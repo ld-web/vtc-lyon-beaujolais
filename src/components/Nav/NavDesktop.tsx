@@ -14,7 +14,7 @@ const LinksNav = styled.nav`
     }
 
     li:not(:last-child) {
-      border-right: 1px solid ${({ theme }) => theme.colors.main};
+      border-right: 1px solid ${({ theme }) => theme.colors.green};
     }
 
     li a {
@@ -27,7 +27,7 @@ const LinksNav = styled.nav`
 
       &.active,
       &:hover {
-        background-color: ${({ theme }) => theme.colors.main};
+        background-color: ${({ theme }) => theme.colors.green};
         color: ${({ theme }) => theme.colors.bg};
       }
     }
