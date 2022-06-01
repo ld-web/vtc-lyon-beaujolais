@@ -44,7 +44,7 @@ const CarouselCta = styled.div`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     position: absolute;
-    left: 10%;
+    left: 15%;
     bottom: 15%;
     flex-direction: row;
     padding: 1.5rem 2.1rem;
