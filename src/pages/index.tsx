@@ -4,7 +4,7 @@ import * as React from "react";
 import { Fade } from "react-slideshow-image";
 import styled from "styled-components";
 import Cta from "../components/Home/Cta";
-import { PolygonDirection, PolygonTheme } from "../components/Polygon";
+import { PolygonBackground, PolygonDirection } from "../components/Polygon";
 import PolygonSection from "../components/PolygonSection";
 import { Desktop, Mobile } from "../utils/rwd";
 
@@ -57,8 +57,8 @@ const IndexPage = ({ data }: PageProps<DataProps>) => {
 
       <PolygonSection
         title="Antoine & Adeline"
-        direction={PolygonDirection.DOWN}
-        theme={PolygonTheme.DARK}
+        direction={PolygonDirection.UP}
+        bg={PolygonBackground.LIGHT}
       >
         Antoine & Adeline transport Taxi/VTC vous proposent leur service de
         transport avec chauffeur pour plusieurs types de prestations. Du trajet
@@ -70,8 +70,8 @@ const IndexPage = ({ data }: PageProps<DataProps>) => {
 
       <PolygonSection
         title="Silence ça roule"
-        direction={PolygonDirection.UP}
-        theme={PolygonTheme.LIGHT}
+        direction={PolygonDirection.DOWN}
+        bg={PolygonBackground.GREEN}
       >
         Passionnés par le service, par la conduite et par la nature, nous avons
         à coeur de préserver notre environnement . C'est pour cela que nous
@@ -86,8 +86,8 @@ const IndexPage = ({ data }: PageProps<DataProps>) => {
 
       <PolygonSection
         title="Un savoir-faire"
-        direction={PolygonDirection.DOWN}
-        theme={PolygonTheme.DARK_BLUE}
+        direction={PolygonDirection.UP}
+        bg={PolygonBackground.DARK}
       >
         Fort d'une expérience solide dans le domaine du transport de personnes,
         nous avons pour but de satisfaire pleinement notre clientèle en assurant
