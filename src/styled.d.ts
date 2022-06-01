@@ -4,6 +4,7 @@ interface IPalette {
   main: string;
   secondary: string;
   darkblue: string;
+  green: string;
   bg: string;
   footerBg: string;
   headerBg: string;
