@@ -7,7 +7,6 @@ export const defaultTheme: DefaultTheme = {
     secondary: "#00C9A9",
     darkblue: "#044857",
     green: "#74924f",
-    // bg: "#E3DED2",
     bg: "#FFF",
     footerBg: "#E3DED2",
     headerBg: "white",
