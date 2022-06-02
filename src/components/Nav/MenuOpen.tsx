@@ -26,7 +26,7 @@ const OpenButton = styled.button`
 
 export default function MenuOpen({ onClick }: MenuOpenProps) {
   return (
-    <OpenButton onClick={onClick}>
+    <OpenButton onClick={onClick} aria-label="Ouvrir le menu">
       <div></div>
       <div></div>
       <div></div>

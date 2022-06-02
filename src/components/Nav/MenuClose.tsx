@@ -33,7 +33,7 @@ const CloseButton = styled.button`
 
 export default function MenuClose({ onClick }: MenuCloseProps) {
   return (
-    <CloseButton onClick={onClick}>
+    <CloseButton onClick={onClick} aria-label="Fermer le menu">
       <div></div>
       <div></div>
     </CloseButton>
