@@ -4,6 +4,7 @@ import GlobalStyles from "../styles/GlobalStyles";
 import { defaultTheme } from "../styles/theme";
 import Footer from "./Footer";
 import Header from "./Header";
+import Seo from "./Seo";
 
 interface LayoutProps {
   children: ReactChild | ReactChildren;
@@ -11,13 +12,16 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Header />
-      <div id="wrapper">
-        <GlobalStyles />
-        <main>{children}</main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <>
+      <Seo />
+      <ThemeProvider theme={defaultTheme}>
+        <Header />
+        <div id="wrapper">
+          <GlobalStyles />
+          <main>{children}</main>
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </>
   );
 }

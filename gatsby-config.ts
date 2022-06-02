@@ -7,7 +7,9 @@ require("dotenv").config({
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Antoine & Adeline - Transport Taxi/VTC`,
+    description: `Traversez l'horizon avec nous`,
     siteUrl: process.env.SITE_URL,
+    image: "/preview.jpg",
   },
   plugins: [
     "gatsby-plugin-styled-components",
