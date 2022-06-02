@@ -25,7 +25,8 @@ const CarouselCta = styled.div`
     margin: 0;
   }
 
-  h3 {
+  h2 {
+    font-size: 1.2rem;
     margin: 0.3rem 0rem;
   }
 
@@ -60,7 +61,7 @@ export default function Cta() {
     <CarouselCta>
       <div>
         <h1>Chauffeur privé</h1>
-        <h3>Traversez l'horizon avec nous</h3>
+        <h2>Traversez l'horizon avec nous</h2>
       </div>
       <div>
         <Link to={CONTACT.to}>Réserver</Link>
