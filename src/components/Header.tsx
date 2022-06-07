@@ -30,7 +30,7 @@ export default function Header() {
       <Link to="/">
         <StaticImage
           src="../images/logo_transparent.jpg"
-          alt="Title"
+          alt="Antoine & Adeline - Chauffeur privé"
           placeholder="blurred"
           width={logo_dimension}
           height={logo_dimension}
