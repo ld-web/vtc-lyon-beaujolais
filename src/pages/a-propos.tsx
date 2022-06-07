@@ -80,9 +80,10 @@ export default function About() {
         </div>
         <div className="text-content">
           <p>
-            Situé au Nord de Lyon entre les monts d'or et le Beaujolais, notre
-            entreprise est <strong>en activité depuis 2014</strong>. Ces années
-            d'expérience nous ont apportées une{" "}
+            Situé au{" "}
+            <strong>nord de Lyon entre les Monts d'Or et le Beaujolais</strong>,
+            notre entreprise est <strong>en activité depuis 2014</strong>. Ces
+            années d'expérience nous ont apportées une{" "}
             <strong>
               vision très large et précise du métier de chauffeur privé
             </strong>
@@ -110,18 +111,33 @@ export default function About() {
             Quels sont les principaux avantages d'un chauffeur privé (VTC) ?
           </h2>
           <AdvantagesList>
-            <li>Une prise en compte du confort de la clientèle</li>
-            <li>Une ponctualité irréprochable</li>
             <li>
-              Un prix communiqué lors de votre réservation et beaucoup moins
-              onéreux que les services d'un Taxi, sans suppléments météo et
-              autres...
+              Une prise en compte du <strong>confort de la clientèle</strong>
             </li>
-            <li>Une réservation au préalable pour voyager sans stress</li>
+            <li>
+              Une <strong>ponctualité</strong> irréprochable
+            </li>
+            <li>
+              Un prix communiqué lors de votre réservation et beaucoup{" "}
+              <strong>moins onéreux que les services d'un Taxi</strong>, sans
+              suppléments météo et autres...
+            </li>
+            <li>
+              Une <strong>réservation au préalable</strong> pour voyager{" "}
+              <strong>sans stress</strong>
+            </li>
             <li>Le nombre de passagers ou bagages n’influence pas le prix</li>
-            <li>Plus besoin de chercher une place de stationnement</li>
-            <li>Pas de frais supplémentaires en cas de retard de votre part</li>
-            <li>Un service personnalisable</li>
+            <li>
+              <strong>Plus besoin</strong> de chercher une place de
+              stationnement
+            </li>
+            <li>
+              <strong>Pas de frais supplémentaires</strong> en cas de retard de
+              votre part
+            </li>
+            <li>
+              Un <strong>service personnalisable</strong>
+            </li>
           </AdvantagesList>
         </div>
         <div>
