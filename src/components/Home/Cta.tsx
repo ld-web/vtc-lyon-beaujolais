@@ -1,7 +1,6 @@
-import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { CONTACT } from "../../data/links";
+import ButtonBook from "../ButtonBook";
 
 const CarouselCta = styled.div`
   display: flex;
@@ -30,19 +29,6 @@ const CarouselCta = styled.div`
     margin: 0.3rem 0rem;
   }
 
-  a {
-    display: block;
-    padding: 0.8rem 1.4rem;
-    color: white;
-    background-color: ${({ theme }) => theme.colors.secondary};
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
-
-    &:hover {
-      background-color: #00a98f;
-    }
-  }
-
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     position: absolute;
     left: 15%;
@@ -52,6 +38,10 @@ const CarouselCta = styled.div`
 
     h1 {
       font-size: 2.2rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
     }
   }
 `;
@@ -63,9 +53,7 @@ export default function Cta() {
         <h1>Chauffeur privé</h1>
         <h2>Traversez l'horizon avec nous</h2>
       </div>
-      <div>
-        <Link to={CONTACT.to}>Réserver</Link>
-      </div>
+      <ButtonBook />
     </CarouselCta>
   );
 }
