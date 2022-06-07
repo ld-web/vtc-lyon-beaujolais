@@ -68,7 +68,7 @@ export default function About() {
       <Helmet>
         <title>A propos</title>
       </Helmet>
-      <h1 className="content main-title">Qui sommes-nous ?</h1>
+      <h1 className="content main-title center">Qui sommes-nous ?</h1>
       <AboutContainer className="content">
         <div>
           <StaticImage

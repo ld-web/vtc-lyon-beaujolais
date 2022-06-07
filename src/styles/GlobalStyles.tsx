@@ -55,6 +55,10 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  .center {
+    text-align: center;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     .content, .text-content {
       padding: 0rem;
