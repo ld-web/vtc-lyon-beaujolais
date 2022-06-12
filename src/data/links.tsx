@@ -36,7 +36,7 @@ export const VACANCES_MER_MONTAGNE: Link = {
   label: "Vacances Mer/Montagne",
 };
 export const FEMININ: Link = {
-  to: `${PRESTATIONS.to}#100%-feminin`,
+  to: `${PRESTATIONS.to}#feminin`,
   label: "100% Féminin",
 };
 PRESTATIONS.subLinks = [
