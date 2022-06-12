@@ -28,13 +28,17 @@ const AdvantagesContainer = styled(AboutContainer)`
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     max-width: 1600px;
     margin: auto;
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
 const AdvantagesList = styled.ul`
   padding-left: 0rem;
   list-style-type: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 3rem;
+  }
 
   li {
     padding-top: 0.8rem;
