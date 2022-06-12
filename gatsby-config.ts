@@ -29,6 +29,13 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "prestations-carousel",
+        path: "./src/images/prestations-carousel",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "images",
         path: "./src/images/",
       },
