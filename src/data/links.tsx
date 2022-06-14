@@ -1,8 +1,8 @@
-class Link {
-  to: string = "";
-  label: string = "";
+type Link = {
+  to: string;
+  label: string;
   subLinks?: Link[];
-}
+};
 
 export const HOME: Link = {
   to: "/",
