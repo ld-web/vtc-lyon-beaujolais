@@ -59,6 +59,10 @@ const GlobalStyles = createGlobalStyle`
     text-align: center;
   }
 
+  .upper {
+    text-transform: uppercase;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     .content, .text-content {
       padding: 0rem;
