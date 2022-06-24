@@ -33,7 +33,7 @@ const Engine = () => {
     }
 
     fetch(
-      `https://graphhopper.com/api/1/route?point=${departure?.coordinates.lat},${departure?.coordinates.lng}&point=${arrival?.coordinates.lat},${arrival?.coordinates.lng}&profile=car&instructions=false&locale=fr&calc_points=false&key=${process.env.GRAPHHOPPER_API_KEY}`
+      `https://graphhopper.com/api/1/route?point=${departure?.coordinates.lat},${departure?.coordinates.lng}&point=${arrival?.coordinates.lat},${arrival?.coordinates.lng}&profile=car&instructions=false&locale=fr&calc_points=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {

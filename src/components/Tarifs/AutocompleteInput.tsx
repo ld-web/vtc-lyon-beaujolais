@@ -32,7 +32,7 @@ const AutocompleteInput = ({
 
     timeout = setTimeout(() => {
       fetch(
-        `https://graphhopper.com/api/1/geocode?q=${value}&locale=fr&limit=5&debug=false&key=${process.env.GRAPHHOPPER_API_KEY}`
+        `https://graphhopper.com/api/1/geocode?q=${value}&locale=fr&limit=5&debug=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => {
