@@ -5,9 +5,9 @@ import styled from "styled-components";
 
 const Prestation = styled.section`
   position: relative;
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 9rem;
   padding-top: 1.2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 
   .wave {
     background: #fff;
@@ -62,6 +62,10 @@ const Prestation = styled.section`
   .body {
     display: flex;
     flex-direction: column;
+
+    & > div {
+      text-align: center;
+    }
 
     & > * {
       flex-basis: 50%;
