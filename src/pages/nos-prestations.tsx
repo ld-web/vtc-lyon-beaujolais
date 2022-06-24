@@ -7,7 +7,7 @@ const Prestation = styled.section`
   position: relative;
   scroll-margin-top: 9rem;
   padding-top: 1.2rem;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 
   .wave {
     background: #fff;
@@ -82,6 +82,7 @@ const Prestation = styled.section`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     text-align: justify;
+    padding-bottom: 4rem;
 
     .body {
       flex-direction: row;
