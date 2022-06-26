@@ -24,7 +24,7 @@ const Engine = () => {
   const [departure, setDeparture] = useState<Location | null>(null);
   const [arrival, setArrival] = useState<Location | null>(null);
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
-  const [selectionError, setSelectionError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -35,7 +35,7 @@ const Engine = () => {
 
   const onSubmit: SubmitHandler<EngineInputs> = async () => {
     if (departure === null || arrival === null) {
-      setSelectionError(
+      setError(
         "Veuillez choisir un départ et une arrivée depuis les listes proposées lors de votre saisie"
       );
       return;
@@ -45,14 +45,14 @@ const Engine = () => {
       const estimation = await estimate(departure, arrival);
       setEstimatedPrice(estimation);
     } catch (e) {
-      setSelectionError(
+      setError(
         "Une erreur est survenue lors de l'estimation, veuillez nous en excuser"
       );
     }
   };
 
   useEffect(() => {
-    setSelectionError(null);
+    setError(null);
   }, [departure, arrival]);
 
   const departureSelected = useCallback((location: Location) => {
@@ -69,7 +69,7 @@ const Engine = () => {
     <EngineContainer>
       <h2>Simulez votre tarif !</h2>
 
-      {selectionError && <ErrorContainer>{selectionError}</ErrorContainer>}
+      {error && <ErrorContainer>{error}</ErrorContainer>}
 
       <EngineForm onSubmit={handleSubmit(onSubmit)}>
         {errors.startLocation && (
