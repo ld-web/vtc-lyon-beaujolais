@@ -23,20 +23,20 @@ const AutocompleteInput = ({
   callback,
   registerFn,
 }: AutocompleteInputProps) => {
-  const [results, setResults] = useState<Location[]>([]);
-  const [showResults, setShowResults] = useState(false);
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [showLocations, setShowLocations] = useState(false);
 
   const geocode = useCallback((value: string) => {
     clearTimeout(timeout);
     if (value.length === 0) {
-      setShowResults(false);
+      setShowLocations(false);
       return;
     }
 
     timeout = setTimeout(async () => {
-      const locations = await geocodeLocation(value);
-      setShowResults(true);
-      setResults(locations);
+      const foundLocations = await geocodeLocation(value);
+      setShowLocations(true);
+      setLocations(foundLocations);
     }, DEBOUNCE_TIMEOUT);
   }, []);
 
@@ -50,14 +50,14 @@ const AutocompleteInput = ({
           onChange: (e) => geocode(e.target.value),
         })}
       />
-      {showResults && (
+      {showLocations && (
         <ResultsContainer>
-          {results.map((location) => (
+          {locations.map((location) => (
             <div
               key={location.osm_id}
               onClick={() => {
                 callback(location);
-                setShowResults(false);
+                setShowLocations(false);
               }}
             >
               {location.format()}

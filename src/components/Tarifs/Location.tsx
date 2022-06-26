@@ -4,31 +4,15 @@ export type Coordinates = {
 };
 
 export default class Location {
-  osm_id: number;
-  country: string;
-  name: string;
-  street_number: number;
-  state: string | null;
-  postcode: string | null;
-  coordinates: Coordinates;
-
   constructor(
-    osm_id: number,
-    country: string,
-    name: string,
-    street_number: number,
-    state: string | null,
-    postcode: string | null,
-    coordinates: Coordinates
-  ) {
-    this.osm_id = osm_id;
-    this.country = country;
-    this.name = name;
-    this.street_number = street_number;
-    this.state = state;
-    this.postcode = postcode;
-    this.coordinates = coordinates;
-  }
+    public osm_id: number,
+    public country: string,
+    public name: string,
+    public street_number: number,
+    public state: string | null,
+    public postcode: string | null,
+    public coordinates: Coordinates
+  ) {}
 
   format() {
     return (
