@@ -3,7 +3,7 @@ import { UseFormRegister } from "react-hook-form";
 import { geocodeLocation } from "../../services/graphhopper";
 import { EngineInputs } from "./Engine";
 import Location from "./Location";
-import { ResultsContainer } from "./styles/AutocompleteInputStyles";
+import { LocationsContainer } from "./styles/AutocompleteInputStyles";
 
 // how much time to wait before launching request ? (in ms)
 const DEBOUNCE_TIMEOUT = 850;
@@ -13,7 +13,7 @@ let timeout: any;
 interface AutocompleteInputProps {
   name: keyof EngineInputs;
   placeholder: string;
-  callback: Function;
+  callback: (location: Location) => void;
   registerFn: UseFormRegister<EngineInputs>;
 }
 
@@ -51,7 +51,7 @@ const AutocompleteInput = ({
         })}
       />
       {showLocations && (
-        <ResultsContainer>
+        <LocationsContainer>
           {locations.map((location) => (
             <div
               key={location.osm_id}
@@ -63,7 +63,7 @@ const AutocompleteInput = ({
               {location.format()}
             </div>
           ))}
-        </ResultsContainer>
+        </LocationsContainer>
       )}
     </div>
   );
