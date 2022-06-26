@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AutocompleteInput from "./AutocompleteInput";
 import Location from "./Location";
@@ -62,17 +62,17 @@ const Engine = () => {
     setSelectionError(false);
   }, [departure, arrival]);
 
-  const departureSelected = (location: Location) => {
+  const departureSelected = useCallback((location: Location) => {
     console.log("selected departure : ", location);
     setValue("startLocation", location.format());
     setDeparture(location);
-  };
+  }, []);
 
-  const arrivalSelected = (location: Location) => {
+  const arrivalSelected = useCallback((location: Location) => {
     console.log("selected arrival : ", location);
     setValue("endLocation", location.format());
     setArrival(location);
-  };
+  }, []);
 
   return (
     <EngineContainer>
