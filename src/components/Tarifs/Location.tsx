@@ -40,4 +40,8 @@ export default class Location {
       this.country
     );
   }
+
+  getPoint(): string {
+    return `${this.coordinates.lat},${this.coordinates.lng}`;
+  }
 }

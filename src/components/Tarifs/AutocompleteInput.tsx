@@ -1,10 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { UseFormRegister } from "react-hook-form";
+import { geocodeLocation } from "../../services/graphhopper";
 import { EngineInputs } from "./Engine";
 import Location from "./Location";
 import { ResultsContainer } from "./styles/AutocompleteInputStyles";
 
+// how much time to wait before launching request ? (in ms)
 const DEBOUNCE_TIMEOUT = 850;
+
 let timeout: any;
 
 interface AutocompleteInputProps {
@@ -30,32 +33,10 @@ const AutocompleteInput = ({
       return;
     }
 
-    timeout = setTimeout(() => {
-      fetch(
-        `https://graphhopper.com/api/1/geocode?q=${value}&locale=fr&limit=5&debug=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const locations: Location[] = [];
-
-          data.hits.map((hit: any) => {
-            locations.push(
-              new Location(
-                hit.osm_id,
-                hit.country,
-                hit.name,
-                hit.house_number ?? null,
-                hit.state ?? null,
-                hit.postcode ?? null,
-                hit.point
-              )
-            );
-          });
-
-          setShowResults(true);
-          console.log(locations);
-          setResults(locations);
-        });
+    timeout = setTimeout(async () => {
+      const locations = await geocodeLocation(value);
+      setShowResults(true);
+      setResults(locations);
     }, DEBOUNCE_TIMEOUT);
   }, []);
 

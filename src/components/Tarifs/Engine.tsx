@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { estimate } from "../../services/graphhopper";
 import AutocompleteInput from "./AutocompleteInput";
 import Location from "./Location";
 import {
@@ -20,56 +21,46 @@ export type EngineInputs = {
 };
 
 const Engine = () => {
+  const [departure, setDeparture] = useState<Location | null>(null);
+  const [arrival, setArrival] = useState<Location | null>(null);
+  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
+  const [selectionError, setSelectionError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm<EngineInputs>();
-  const onSubmit: SubmitHandler<EngineInputs> = () => {
+
+  const onSubmit: SubmitHandler<EngineInputs> = async () => {
     if (departure === null || arrival === null) {
-      setSelectionError(true);
+      setSelectionError(
+        "Veuillez choisir un départ et une arrivée depuis les listes proposées lors de votre saisie"
+      );
       return;
     }
 
-    fetch(
-      `https://graphhopper.com/api/1/route?point=${departure?.coordinates.lat},${departure?.coordinates.lng}&point=${arrival?.coordinates.lat},${arrival?.coordinates.lng}&profile=car&instructions=false&locale=fr&calc_points=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        let distance: number = data.paths[0].distance / 1000;
-        let coeff = 2;
-
-        if (distance > 50) {
-          coeff = 1.8;
-        }
-
-        let estimate: number = distance * coeff;
-        if (estimate < 25) {
-          estimate = 25;
-        }
-
-        setEstimatedPrice(parseFloat(estimate.toFixed(2)));
-      });
+    try {
+      const estimation = await estimate(departure, arrival);
+      setEstimatedPrice(estimation);
+    } catch (e) {
+      setSelectionError(
+        "Une erreur est survenue lors de l'estimation, veuillez nous en excuser"
+      );
+    }
   };
 
-  const [departure, setDeparture] = useState<Location | null>(null);
-  const [arrival, setArrival] = useState<Location | null>(null);
-  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
-  const [selectionError, setSelectionError] = useState(false);
-
   useEffect(() => {
-    setSelectionError(false);
+    setSelectionError(null);
   }, [departure, arrival]);
 
   const departureSelected = useCallback((location: Location) => {
-    console.log("selected departure : ", location);
     setValue("startLocation", location.format());
     setDeparture(location);
   }, []);
 
   const arrivalSelected = useCallback((location: Location) => {
-    console.log("selected arrival : ", location);
     setValue("endLocation", location.format());
     setArrival(location);
   }, []);
@@ -78,12 +69,7 @@ const Engine = () => {
     <EngineContainer>
       <h2>Simulez votre tarif !</h2>
 
-      {selectionError && (
-        <ErrorContainer>
-          Veuillez choisir un départ et une arrivée depuis les listes proposées
-          lors de votre saisie
-        </ErrorContainer>
-      )}
+      {selectionError && <ErrorContainer>{selectionError}</ErrorContainer>}
 
       <EngineForm onSubmit={handleSubmit(onSubmit)}>
         {errors.startLocation && (
