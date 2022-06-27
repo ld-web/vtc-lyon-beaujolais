@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import styled from "styled-components";
 import LocationField from "../Form/LocationField";
 import NbLuggages from "../Form/NbLuggages";
@@ -47,10 +47,6 @@ const ContactForm = ({ query }: ContactFormProps) => {
     methods.setValue("nbPeople", query.get("nbPeople") ?? "");
     methods.setValue("nbLuggage", query.get("nbLuggage") ?? "");
   }, []);
-
-  const onSubmit: SubmitHandler<ContactFormInputs> = (data) => {
-    console.log(data);
-  };
 
   const departureSelected = useCallback((location: Location) => {
     methods.setValue("startLocation", location.format());
