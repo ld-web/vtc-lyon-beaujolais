@@ -9,6 +9,22 @@ export const EngineContainer = styled.div`
     text-align: center;
   }
 
+  button#reservation {
+    margin-top: 1.5rem;
+    background-color: ${({ theme }) => theme.colors.main};
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.8rem 0.4rem;
+    font-size: large;
+
+    &:hover {
+      filter: brightness(85%);
+    }
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding: 2rem;
   }
@@ -57,9 +73,4 @@ export const ErrorContainer = styled.div`
   color: #f00;
   font-weight: bold;
   margin-bottom: 1.5rem;
-`;
-
-export const FormFieldError = styled.div`
-  color: #f00;
-  font-size: small;
 `;

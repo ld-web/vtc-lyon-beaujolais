@@ -1,14 +1,19 @@
+import { navigate } from "gatsby";
 import React, { useCallback, useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { CONTACT } from "../../data/links";
 import { estimate } from "../../services/graphhopper";
-import AutocompleteInput from "./AutocompleteInput";
+import LocationField from "../Form/LocationField";
+import NbLuggages from "../Form/NbLuggages";
+import NbPeople from "../Form/NbPeople";
+import TripDate from "../Form/TripDate";
+import TripTime from "../Form/TripTime";
 import Location from "./Location";
 import {
   EngineContainer,
   EngineEstimate,
   EngineForm,
   ErrorContainer,
-  FormFieldError,
 } from "./styles/EngineStyles";
 
 export type EngineInputs = {
@@ -16,8 +21,8 @@ export type EngineInputs = {
   endLocation: string;
   tripDate: string;
   tripTime: string;
-  nbPeople: number;
-  nbLuggage: number;
+  nbPeople: string;
+  nbLuggage: string;
 };
 
 const Engine = () => {
@@ -26,12 +31,7 @@ const Engine = () => {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<EngineInputs>();
+  const methods = useForm<EngineInputs>();
 
   const onSubmit: SubmitHandler<EngineInputs> = async () => {
     if (departure === null || arrival === null) {
@@ -56,14 +56,19 @@ const Engine = () => {
   }, [departure, arrival]);
 
   const departureSelected = useCallback((location: Location) => {
-    setValue("startLocation", location.format());
+    methods.setValue("startLocation", location.format());
     setDeparture(location);
   }, []);
 
   const arrivalSelected = useCallback((location: Location) => {
-    setValue("endLocation", location.format());
+    methods.setValue("endLocation", location.format());
     setArrival(location);
   }, []);
+
+  const reserver = () => {
+    const queryString = new URLSearchParams(methods.getValues()).toString();
+    navigate(`${CONTACT.to}?${queryString}`);
+  };
 
   return (
     <EngineContainer>
@@ -71,45 +76,42 @@ const Engine = () => {
 
       {error && <ErrorContainer>{error}</ErrorContainer>}
 
-      <EngineForm onSubmit={handleSubmit(onSubmit)}>
-        {errors.startLocation && (
-          <FormFieldError>L'adresse de départ est obligatoire</FormFieldError>
-        )}
-        <AutocompleteInput
-          name="startLocation"
-          placeholder="Adresse de départ"
-          callback={departureSelected}
-          registerFn={register}
-        />
+      <FormProvider {...methods}>
+        <EngineForm onSubmit={methods.handleSubmit(onSubmit)}>
+          <LocationField
+            name="startLocation"
+            callback={departureSelected}
+            placeholder="Adresse de départ"
+            errorMessage="L'adresse de départ est obligatoire"
+          />
+          <LocationField
+            name="endLocation"
+            callback={arrivalSelected}
+            placeholder="Adresse d'arrivée"
+            errorMessage="L'adresse d'arrivée est obligatoire"
+          />
+          <TripDate />
+          <TripTime />
+          <NbPeople />
+          <NbLuggages />
+          <button type="submit" aria-label="Calculer le prix du trajet">
+            Calculer
+          </button>
+        </EngineForm>
+      </FormProvider>
 
-        {errors.endLocation && (
-          <FormFieldError>
-            L'adresse de destination est obligatoire
-          </FormFieldError>
-        )}
-        <AutocompleteInput
-          name="endLocation"
-          placeholder="Adresse d'arrivée"
-          callback={arrivalSelected}
-          registerFn={register}
-        />
-
-        <input type="date" {...register("tripDate")} />
-        <input type="time" {...register("tripTime")} />
-        <input
-          type="number"
-          {...register("nbPeople")}
-          placeholder="Nombre de personnes"
-        />
-        <input
-          type="number"
-          {...register("nbLuggage")}
-          placeholder="Nombre de bagages"
-        />
-        <button type="submit">Calculer</button>
-      </EngineForm>
       {estimatedPrice && (
-        <EngineEstimate>Tarif estimé : {`${estimatedPrice}€`}</EngineEstimate>
+        <>
+          <EngineEstimate>Tarif estimé : {`${estimatedPrice}€`}</EngineEstimate>
+          <button
+            type="button"
+            aria-label="Réserver mon trajet"
+            id="reservation"
+            onClick={reserver}
+          >
+            Réserver
+          </button>
+        </>
       )}
     </EngineContainer>
   );

@@ -53,7 +53,7 @@ export const TARIFS: Link = {
 };
 
 export const CONTACT: Link = {
-  to: "/contact",
+  to: "/contact-reservation",
   label: "Contact & Réservation",
 };
 

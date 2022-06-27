@@ -1,28 +1,26 @@
 import React, { useCallback, useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { geocodeLocation } from "../../services/graphhopper";
-import { EngineInputs } from "./Engine";
 import Location from "./Location";
 import { LocationsContainer } from "./styles/AutocompleteInputStyles";
 
-// how much time to wait before launching request ? (in ms)
+/// how much time to wait before launching request ? (in ms)
 const DEBOUNCE_TIMEOUT = 850;
 
 let timeout: any;
 
 interface AutocompleteInputProps {
-  name: keyof EngineInputs;
+  name: string;
   placeholder: string;
   callback: (location: Location) => void;
-  registerFn: UseFormRegister<EngineInputs>;
 }
 
 const AutocompleteInput = ({
   name,
   placeholder,
   callback,
-  registerFn,
 }: AutocompleteInputProps) => {
+  const { register } = useFormContext();
   const [locations, setLocations] = useState<Location[]>([]);
   const [showLocations, setShowLocations] = useState(false);
 
@@ -45,7 +43,7 @@ const AutocompleteInput = ({
       <input
         type="text"
         placeholder={placeholder}
-        {...registerFn(name, {
+        {...register(name, {
           required: true,
           onChange: (e) => geocode(e.target.value),
         })}
