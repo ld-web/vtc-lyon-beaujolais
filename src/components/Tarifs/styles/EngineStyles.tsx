@@ -30,38 +30,6 @@ export const EngineContainer = styled.div`
   }
 `;
 
-export const EngineForm = styled.form`
-  & > div {
-    position: relative;
-  }
-
-  input {
-    margin-bottom: 0.6rem;
-  }
-
-  input,
-  button {
-    font-family: "Poppins", sans-serif;
-    display: block;
-    width: 100%;
-    padding: 0.8rem 0.4rem;
-    font-size: large;
-  }
-
-  button[type="submit"] {
-    margin-top: 1.5rem;
-    background-color: ${({ theme }) => theme.colors.green};
-    border: none;
-    color: #fff;
-    text-transform: uppercase;
-    cursor: pointer;
-
-    &:hover {
-      filter: brightness(85%);
-    }
-  }
-`;
-
 export const EngineEstimate = styled.div`
   margin-top: 2rem;
   font-size: xx-large;

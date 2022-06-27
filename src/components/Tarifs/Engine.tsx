@@ -6,13 +6,13 @@ import { estimate } from "../../services/graphhopper";
 import LocationField from "../Form/LocationField";
 import NbLuggages from "../Form/NbLuggages";
 import NbPeople from "../Form/NbPeople";
+import { Form } from "../Form/styles";
 import TripDate from "../Form/TripDate";
 import TripTime from "../Form/TripTime";
 import Location from "./Location";
 import {
   EngineContainer,
   EngineEstimate,
-  EngineForm,
   ErrorContainer,
 } from "./styles/EngineStyles";
 
@@ -77,7 +77,7 @@ const Engine = () => {
       {error && <ErrorContainer>{error}</ErrorContainer>}
 
       <FormProvider {...methods}>
-        <EngineForm onSubmit={methods.handleSubmit(onSubmit)}>
+        <Form onSubmit={methods.handleSubmit(onSubmit)}>
           <LocationField
             name="startLocation"
             callback={departureSelected}
@@ -97,7 +97,7 @@ const Engine = () => {
           <button type="submit" aria-label="Calculer le prix du trajet">
             Calculer
           </button>
-        </EngineForm>
+        </Form>
       </FormProvider>
 
       {estimatedPrice && (
