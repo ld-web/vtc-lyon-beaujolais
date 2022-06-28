@@ -1,3 +1,4 @@
+import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -43,13 +44,21 @@ export default function NosTarifs() {
             supplément. Nous ne facturons pas l'attente en cas de retard de
             votre vol ou train.
           </p>
+          <p>
+            Vous pourrez procéder au paiement par carte bancaire, chèque ou
+            espèces à bord du véhicule directement auprès de votre chauffeur une
+            fois arrivé à destination.
+          </p>
         </div>
         <Engine />
       </TarifsContainer>
       <div className="content">
-        Vous pourrez procéder au paiement par carte bancaire, chèque ou espèces
-        à bord du véhicule directement auprès de votre chauffeur une fois arrivé
-        à destination.
+        <StaticImage
+          src="../images/fourviere_nuit_2_opt.PNG"
+          alt="Antoine & Adeline transport VTC, traversez l'horizon avec nous !"
+          placeholder="blurred"
+          layout={"constrained"}
+        />
       </div>
     </>
   );
