@@ -147,7 +147,7 @@ export default function About() {
         </div>
         <div>
           <StaticImage
-            src="../images/crv_vignes.jpg"
+            src="../images/airport_ext_opt.png"
             alt="Antoine & Adeline transport VTC, traversez l'horizon avec nous !"
             placeholder="blurred"
             layout={"constrained"}
