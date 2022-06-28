@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LocationsContainer = styled.div`
+export const ItemsContainer = styled.div`
   position: absolute;
   top: 100%;
   z-index: 10;

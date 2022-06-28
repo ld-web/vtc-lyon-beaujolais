@@ -1,5 +1,5 @@
-import { navigate } from "gatsby";
-import React, { useCallback, useEffect, useState } from "react";
+import { Link } from "gatsby";
+import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { CONTACT } from "../../data/links";
 import { estimate } from "../../services/graphhopper";
@@ -9,16 +9,17 @@ import NbPeople from "../Form/NbPeople";
 import { Form } from "../Form/styles";
 import TripDate from "../Form/TripDate";
 import TripTime from "../Form/TripTime";
-import Location from "./Location";
 import {
   EngineContainer,
   EngineEstimate,
   ErrorContainer,
-} from "./styles/EngineStyles";
+} from "./EngineStyles";
 
 export type EngineInputs = {
   startLocation: string;
+  startLocationPoint: string;
   endLocation: string;
+  endLocationPoint: string;
   tripDate: string;
   tripTime: string;
   nbPeople: string;
@@ -26,15 +27,16 @@ export type EngineInputs = {
 };
 
 const Engine = () => {
-  const [departure, setDeparture] = useState<Location | null>(null);
-  const [arrival, setArrival] = useState<Location | null>(null);
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const methods = useForm<EngineInputs>();
+  const { getValues, handleSubmit } = methods;
 
-  const onSubmit: SubmitHandler<EngineInputs> = async () => {
-    if (departure === null || arrival === null) {
+  const locationSelected = () => setError(null);
+
+  const onSubmit: SubmitHandler<EngineInputs> = async (data) => {
+    if (data.startLocationPoint === "" || data.endLocationPoint === "") {
       setError(
         "Veuillez choisir un départ et une arrivée depuis les listes proposées lors de votre saisie"
       );
@@ -42,32 +44,16 @@ const Engine = () => {
     }
 
     try {
-      const estimation = await estimate(departure, arrival);
+      const estimation = await estimate(
+        data.startLocationPoint,
+        data.endLocationPoint
+      );
       setEstimatedPrice(estimation);
     } catch (e) {
       setError(
         "Une erreur est survenue lors de l'estimation, veuillez nous en excuser"
       );
     }
-  };
-
-  useEffect(() => {
-    setError(null);
-  }, [departure, arrival]);
-
-  const departureSelected = useCallback((location: Location) => {
-    methods.setValue("startLocation", location.format());
-    setDeparture(location);
-  }, []);
-
-  const arrivalSelected = useCallback((location: Location) => {
-    methods.setValue("endLocation", location.format());
-    setArrival(location);
-  }, []);
-
-  const reserver = () => {
-    const queryString = new URLSearchParams(methods.getValues()).toString();
-    navigate(`${CONTACT.to}?${queryString}`);
   };
 
   return (
@@ -77,18 +63,18 @@ const Engine = () => {
       {error && <ErrorContainer>{error}</ErrorContainer>}
 
       <FormProvider {...methods}>
-        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <LocationField
             name="startLocation"
-            callback={departureSelected}
             placeholder="Adresse de départ"
             errorMessage="L'adresse de départ est obligatoire"
+            callback={locationSelected}
           />
           <LocationField
             name="endLocation"
-            callback={arrivalSelected}
             placeholder="Adresse d'arrivée"
             errorMessage="L'adresse d'arrivée est obligatoire"
+            callback={locationSelected}
           />
           <TripDate />
           <TripTime />
@@ -103,14 +89,12 @@ const Engine = () => {
       {estimatedPrice && (
         <>
           <EngineEstimate>Tarif estimé : {`${estimatedPrice}€`}</EngineEstimate>
-          <button
-            type="button"
-            aria-label="Réserver mon trajet"
+          <Link
             id="reservation"
-            onClick={reserver}
+            to={`${CONTACT.to}?${new URLSearchParams(getValues()).toString()}`}
           >
             Réserver
-          </button>
+          </Link>
         </>
       )}
     </EngineContainer>

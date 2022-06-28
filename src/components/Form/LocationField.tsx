@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useFormContext } from "react-hook-form";
-import AutocompleteInput from "../Tarifs/AutocompleteInput";
+import { geocodeLocation } from "../../services/graphhopper";
+import AutocompleteInput from "./AutocompleteInput";
 import Location from "../Tarifs/Location";
 import { FormFieldError } from "./styles";
 
@@ -8,18 +9,26 @@ interface LocationProps {
   name: string;
   placeholder: string;
   errorMessage: string;
-  callback: (location: Location) => void;
+  callback?: ((location: Location) => void) | null;
 }
 
 const LocationField = ({
   name,
   placeholder,
   errorMessage,
-  callback,
+  callback = null,
 }: LocationProps) => {
   const {
+    register,
+    setValue,
     formState: { errors },
   } = useFormContext();
+
+  const selected = useCallback((location: Location) => {
+    setValue(name, location.format());
+    setValue(`${name}Point`, location.getPoint());
+    callback && callback(location);
+  }, []);
 
   return (
     <>
@@ -27,8 +36,10 @@ const LocationField = ({
       <AutocompleteInput
         name={name}
         placeholder={placeholder}
-        callback={callback}
+        itemSelectedCallback={selected}
+        getItems={geocodeLocation}
       />
+      <input type="hidden" {...register(`${name}Point`)} />
     </>
   );
 };

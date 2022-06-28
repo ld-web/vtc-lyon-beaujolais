@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import styled from "styled-components";
 import LocationField from "../Form/LocationField";
@@ -8,7 +8,6 @@ import { Form, FormFieldError } from "../Form/styles";
 import TripDate from "../Form/TripDate";
 import TripTime from "../Form/TripTime";
 import { EngineInputs } from "../Tarifs/Engine";
-import Location from "../Tarifs/Location";
 
 const FormContainer = styled.div`
   padding: 1.8rem 0.8rem;
@@ -46,14 +45,6 @@ const ContactForm = ({ query }: ContactFormProps) => {
     methods.setValue("tripTime", query.get("tripTime") ?? "");
     methods.setValue("nbPeople", query.get("nbPeople") ?? "");
     methods.setValue("nbLuggage", query.get("nbLuggage") ?? "");
-  }, []);
-
-  const departureSelected = useCallback((location: Location) => {
-    methods.setValue("startLocation", location.format());
-  }, []);
-
-  const arrivalSelected = useCallback((location: Location) => {
-    methods.setValue("endLocation", location.format());
   }, []);
 
   return (
@@ -96,13 +87,11 @@ const ContactForm = ({ query }: ContactFormProps) => {
           </div>
           <LocationField
             name="startLocation"
-            callback={departureSelected}
             placeholder="Lieu de prise en charge"
             errorMessage="Le lieu de prise en charge est obligatoire"
           />
           <LocationField
             name="endLocation"
-            callback={arrivalSelected}
             placeholder="Lieu d'arrivée"
             errorMessage="Le lieu d'arrivée est obligatoire"
           />

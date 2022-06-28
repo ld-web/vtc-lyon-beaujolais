@@ -1,5 +1,9 @@
 import Location from "../components/Tarifs/Location";
 
+/**
+ * Geocodes given location
+ * @param {string} value - The location to geocode
+ */
 export const geocodeLocation = async (value: string): Promise<Location[]> => {
   const res = await fetch(
     `https://graphhopper.com/api/1/geocode?q=${value}&locale=fr&limit=5&debug=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
@@ -25,14 +29,18 @@ export const geocodeLocation = async (value: string): Promise<Location[]> => {
   return locations;
 };
 
+/**
+ * Estimates trip price between departure & arrival coordinates.
+ * @constructor
+ * @param {string} departure - Departure coordinates, format: {lat},{lng}
+ * @param {string} arrival - Arrival coordinates, format: {lat},{lng}
+ */
 export const estimate = async (
-  departure: Location,
-  arrival: Location
+  departure: string,
+  arrival: string
 ): Promise<number> => {
   const res = await fetch(
-    `https://graphhopper.com/api/1/route?point=${departure.getPoint()}&point=${arrival.getPoint()}&profile=car&instructions=false&locale=fr&calc_points=false&key=${
-      process.env.GATSBY_GRAPHHOPPER_API_KEY
-    }`
+    `https://graphhopper.com/api/1/route?point=${departure}&point=${arrival}&profile=car&instructions=false&locale=fr&calc_points=false&key=${process.env.GATSBY_GRAPHHOPPER_API_KEY}`
   );
   const data = await res.json();
 

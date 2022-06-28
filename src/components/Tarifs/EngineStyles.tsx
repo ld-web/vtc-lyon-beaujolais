@@ -9,11 +9,14 @@ export const EngineContainer = styled.div`
     text-align: center;
   }
 
-  button#reservation {
+  a#reservation {
+    display: block;
     margin-top: 1.5rem;
     background-color: ${({ theme }) => theme.colors.main};
     border: none;
     color: #fff;
+    text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
     width: 100%;
