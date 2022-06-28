@@ -18,7 +18,7 @@ const TarifsContainer = styled.div`
   }
 `;
 
-export default function About() {
+export default function NosTarifs() {
   return (
     <>
       <Helmet>
