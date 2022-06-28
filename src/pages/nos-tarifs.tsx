@@ -49,6 +49,14 @@ export default function NosTarifs() {
             espèces à bord du véhicule directement auprès de votre chauffeur une
             fois arrivé à destination.
           </p>
+          <p>
+            <StaticImage
+              src="../images/payments.png"
+              alt="Payez par carte bancaire, Amex, espèces..."
+              placeholder="blurred"
+              layout={"constrained"}
+            />
+          </p>
         </div>
         <Engine />
       </TarifsContainer>
