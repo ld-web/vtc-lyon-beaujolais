@@ -3,6 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Engine from "../components/Tarifs/Engine";
+import SVGPayments from "../components/Tarifs/SVGPayments";
 
 const TarifsContainer = styled.div`
   display: flex;
@@ -50,12 +51,7 @@ export default function NosTarifs() {
             fois arrivé à destination.
           </p>
           <p>
-            <StaticImage
-              src="../images/payments.png"
-              alt="Payez par carte bancaire, Amex, espèces..."
-              placeholder="blurred"
-              layout={"constrained"}
-            />
+            <SVGPayments />
           </p>
         </div>
         <Engine />
