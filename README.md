@@ -224,3 +224,11 @@ export default function About() {
 The title will be injected into the template.
 
 > See `src/components/Seo.tsx`
+
+## Lighthouse report
+
+Run on the main domain :
+
+![Lighthouse report](docs/lighthouse.png)
+
+Accessibility at 97 is because of poorly chosen colors : obviously I'm not a designer ¯\\_(ツ)\_/¯
