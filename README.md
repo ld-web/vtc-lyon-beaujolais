@@ -7,7 +7,7 @@
 
 Project is hosted and automatically generated/deployed on Gatsby Cloud Platform.
 
-Some refactoring is stille to be made.
+Some refactoring is still to be made.
 
 ## Theming in Styled components
 
