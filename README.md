@@ -177,7 +177,7 @@ For static images, there is another handy `StaticImage` component that can be us
 />
 ```
 
-## Separating a query in a custom hooks
+## Separating a query in a custom hook
 
 The `useSiteMetadata` custom hook allows to retrieve site informations from anywhere in the application.
 
