@@ -225,6 +225,10 @@ The title will be injected into the template.
 
 > See `src/components/Seo.tsx`
 
+## Caching API results with `react-query`
+
+Coming soon.
+
 ## Lighthouse report
 
 Run on the main domain :
