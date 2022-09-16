@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ButtonBook from "../ButtonBook";
+import ButtonCall from "../ButtonCall";
 
 const CarouselCta = styled.div`
   display: flex;
@@ -19,13 +20,18 @@ const CarouselCta = styled.div`
     text-transform: uppercase;
   }
 
+  h1,
+  h2 {
+    text-align: center;
+  }
+
   h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin: 0;
   }
 
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 0.3rem 0rem;
   }
 
@@ -35,6 +41,11 @@ const CarouselCta = styled.div`
     bottom: 15%;
     flex-direction: row;
     padding: 1.5rem 2.1rem;
+
+    h1,
+    h2 {
+      text-align: left;
+    }
 
     h1 {
       font-size: 2.2rem;
@@ -46,6 +57,17 @@ const CarouselCta = styled.div`
   }
 `;
 
+const ButtonsCta = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+`;
+
 export default function Cta() {
   return (
     <CarouselCta>
@@ -53,7 +75,10 @@ export default function Cta() {
         <h1>Chauffeur privé</h1>
         <h2>Traversez l'horizon avec nous</h2>
       </div>
-      <ButtonBook />
+      <ButtonsCta>
+        <ButtonBook />
+        <ButtonCall />
+      </ButtonsCta>
     </CarouselCta>
   );
 }
