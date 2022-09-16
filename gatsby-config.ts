@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Antoine & Adeline - Transport Taxi/VTC`,
     description: `Traversez l'horizon avec nous`,
-    siteUrl: process.env.SITE_URL,
+    siteUrl: process.env.SITE_URL ?? "http://localhost:8000/",
     image: "/preview.jpg",
   },
   plugins: [
