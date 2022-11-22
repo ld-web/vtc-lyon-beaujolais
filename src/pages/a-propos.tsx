@@ -77,7 +77,7 @@ export default function About() {
       <AboutContainer className="content">
         <div>
           <StaticImage
-            src="../images/interieur_crv_nuit.jpg"
+            src="../images/interieur_CRV_2_crop.jpg"
             alt="Antoine & Adeline transport VTC, traversez l'horizon avec nous !"
             placeholder="blurred"
             layout={"constrained"}
