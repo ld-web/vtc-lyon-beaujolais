@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
-import links from "../../data/links";
+import links, { MenuSection } from "../../data/links";
 import MenuClose from "./MenuClose";
 import NavLink from "./NavLink";
 
@@ -54,13 +54,16 @@ export default function MenuLinks({ isOpen, closeMenuFn }: MenuProps) {
         <li>
           <MenuClose onClick={closeMenuFn} />
         </li>
-        {links.map((link) => (
-          <li key={link.to}>
-            <NavLink to={link.to} onClick={closeMenuFn}>
-              {link.label}
-            </NavLink>
-          </li>
-        ))}
+        {links.map(
+          (link) =>
+            link.sections.includes(MenuSection.Header) && (
+              <li key={link.to}>
+                <NavLink to={link.to} onClick={closeMenuFn}>
+                  {link.label}
+                </NavLink>
+              </li>
+            )
+        )}
       </ul>
     </LinksNav>
   );

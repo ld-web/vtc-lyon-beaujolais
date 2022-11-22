@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import links from "../../data/links";
+import links, { MenuSection } from "../../data/links";
 
 const LinksNav = styled.nav`
   ul {
@@ -69,27 +69,30 @@ export default function NavDesktop() {
   return (
     <LinksNav>
       <ul>
-        {links.map((link) => (
-          <li
-            key={link.to}
-            className={link.subLinks !== undefined ? "has-submenu" : ""}
-          >
-            <Link to={link.to} activeClassName="active">
-              {link.label}
-            </Link>
-            {link.subLinks && (
-              <ul>
-                {link.subLinks.map((subLink) => (
-                  <li key={subLink.to}>
-                    <Link to={subLink.to} activeClassName="active">
-                      {subLink.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
+        {links.map(
+          (link) =>
+            link.sections.includes(MenuSection.Header) && (
+              <li
+                key={link.to}
+                className={link.subLinks !== undefined ? "has-submenu" : ""}
+              >
+                <Link to={link.to} activeClassName="active">
+                  {link.label}
+                </Link>
+                {link.subLinks && (
+                  <ul>
+                    {link.subLinks.map((subLink) => (
+                      <li key={subLink.to}>
+                        <Link to={subLink.to} activeClassName="active">
+                          {subLink.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            )
+        )}
       </ul>
     </LinksNav>
   );

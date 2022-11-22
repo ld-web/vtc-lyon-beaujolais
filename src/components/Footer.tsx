@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
-import links from "../data/links";
+import links, { MenuSection } from "../data/links";
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.footerBg};
@@ -51,11 +51,14 @@ export default function Footer() {
     <FooterContainer>
       <ContentWrapper className="content">
         <FooterMenu>
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link to={link.to}>{link.label}</Link>
-            </li>
-          ))}
+          {links.map(
+            (link) =>
+              link.sections.includes(MenuSection.Footer) && (
+                <li key={link.to}>
+                  <Link to={link.to}>{link.label}</Link>
+                </li>
+              )
+          )}
         </FooterMenu>
         <FooterInfos>
           <StaticImage
