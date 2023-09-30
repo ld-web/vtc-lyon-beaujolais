@@ -50,9 +50,9 @@ export default function NosTarifs() {
             espèces à bord du véhicule directement auprès de votre chauffeur une
             fois arrivé à destination.
           </p>
-          <p>
+          <div>
             <SVGPayments />
-          </p>
+          </div>
         </div>
         <Engine />
       </TarifsContainer>
