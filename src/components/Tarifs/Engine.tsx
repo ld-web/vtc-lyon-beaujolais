@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import React, { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { CONTACT } from "../../data/links";
-import { estimate } from "../../services/graphhopper";
+import { estimate } from "../../services/trip";
 import LocationField from "../Form/LocationField";
 import NbLuggages from "../Form/NbLuggages";
 import NbPeople from "../Form/NbPeople";

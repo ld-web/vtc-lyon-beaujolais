@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useFormContext } from "react-hook-form";
-import { geocodeLocation } from "../../services/graphhopper";
+import { geocodeLocation } from "../../services/trip";
 import AutocompleteInput from "./AutocompleteInput";
 import Location from "../Tarifs/Location";
 import { FormFieldError } from "./styles";
@@ -25,6 +25,7 @@ const LocationField = ({
   } = useFormContext();
 
   const selected = useCallback((location: Location) => {
+    console.log(location);
     setValue(name, location.format());
     setValue(`${name}Point`, location.getPoint());
     callback && callback(location);
