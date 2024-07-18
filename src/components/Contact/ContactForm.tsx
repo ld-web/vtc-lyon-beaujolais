@@ -37,6 +37,13 @@ const FormContainer = styled.div`
   }
 `;
 
+const Notification = styled.div`
+  background-color: ${({ theme }) => theme.colors.darkblue};
+  padding: 1rem;
+  color: white;
+  margin-bottom: 0.8rem;
+`;
+
 type ContactFormInputs = {
   fullName: string;
   phone: string;
@@ -79,19 +86,18 @@ const ContactForm = ({ query }: ContactFormProps) => {
     formData.append("Nombre de personnes", data.nbPeople);
     formData.append("Nombre de bagages", data.nbLuggage);
     formData.append("Autre demande", data.message);
-
-    fetch("https://getform.io/f/7e678a79-00ec-4be8-9fd9-fbf41d53ed2e", {
-      method: "POST",
-      body: formData,
-    })
-      .then(() => setSuccess(true))
-      .catch(() => setSuccess(false));
   };
 
   return (
     <FormProvider {...methods}>
       <FormContainer>
         <h2>Formulaire de réservation</h2>
+        <Notification>
+          Veuillez nous excuser, cette plateforme a été désactivée.
+          <br />
+          Utilisez les coordonnées présentes sur cette page (email ou téléphone)
+          pour toute demande. Merci.
+        </Notification>
         <Form onSubmit={handleSubmit(onSubmit)}>
           {errors.fullName && (
             <FormFieldError>Le nom complet est obligatoire</FormFieldError>
@@ -151,9 +157,6 @@ const ContactForm = ({ query }: ContactFormProps) => {
               réessayer dans quelques minutes, merci
             </p>
           )}
-          <button type="submit" aria-label="Envoyer la demande de contact">
-            Envoyer
-          </button>
         </Form>
       </FormContainer>
     </FormProvider>
